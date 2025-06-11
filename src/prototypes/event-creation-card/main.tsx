@@ -1,4 +1,5 @@
 import { Separator } from "@/components/ui/separator";
+import { cn } from "@/lib/utils";
 import { Temporal } from "@js-temporal/polyfill";
 import { useDeepCompareMemo } from "@react-hookz/web";
 import { motion } from "motion/react";
@@ -59,7 +60,7 @@ function Events() {
     <motion.div className="flex size-full" layout>
       {eventsByDate.map(([date, events], index) => (
         <Fragment key={date}>
-          <div className="flex flex-col gap-3 h-full min-w-80">
+          <div className="flex flex-col gap-3 h-full min-w-[16.5rem] 2xl:min-w-80">
             <h3 className="text-lg text-foreground select-none">
               {getColumnHeader(date)}
             </h3>
@@ -71,12 +72,13 @@ function Events() {
               />
             ))}
           </div>
-          {index < Object.entries(eventsByDate).length - 1 && (
-            <Separator
-              orientation="vertical"
-              className="h-full bg-transparent bg-[linear-gradient(to_bottom_in_oklab,transparent_0%,var(--border)_15%,var(--border)_85%,transparent_100%)] mx-4"
-            />
-          )}
+          <Separator
+            orientation="vertical"
+            className={cn(
+              "h-full bg-transparent bg-[linear-gradient(to_bottom_in_oklab,transparent_0%,var(--border)_15%,var(--border)_85%,transparent_100%)] mx-4",
+              index === Object.entries(eventsByDate).length - 1 && "bg-none",
+            )}
+          />
         </Fragment>
       ))}
     </motion.div>
