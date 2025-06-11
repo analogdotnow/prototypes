@@ -39,22 +39,13 @@ const baseEventFormSchema = z.object({
 });
 
 export const eventFormSchema = baseEventFormSchema.superRefine((data, ctx) => {
-  const { startDate, endDate, startTime, endTime, isAllDay, repeats } = data;
+  const { startDate, endDate, startTime, endTime, isAllDay } = data;
 
   // Date relationship validation
   if (endDate.compare(startDate) < 0) {
     ctx.addIssue({
       code: z.ZodIssueCode.custom,
       message: "End date must be after or equal to start date",
-      path: ["endDate"],
-    });
-  }
-
-  // For repeating events, end date must be after start date (not equal)
-  if (repeats && isSameDay(startDate, endDate)) {
-    ctx.addIssue({
-      code: z.ZodIssueCode.custom,
-      message: "End date must be after start date for repeating events",
       path: ["endDate"],
     });
   }
@@ -79,11 +70,29 @@ export const eventFormSchema = baseEventFormSchema.superRefine((data, ctx) => {
 
 export const eventFormSchemaWithRepeats = eventFormSchema.superRefine(
   (data, ctx) => {
+    const { startDate, endDate, startTime, endTime, repeats } = data;
+
     if (data.repeats && !data.repeatType) {
       ctx.addIssue({
         code: z.ZodIssueCode.custom,
         message: "Repeat type is required when repeat is enabled",
         path: ["repeatType"],
+      });
+    }
+
+    if (repeats && isSameDay(startDate, endDate)) {
+      ctx.addIssue({
+        code: z.ZodIssueCode.custom,
+        message: "End date must be after start date for repeating events",
+        path: ["endDate"],
+      });
+    }
+
+    if (repeats && (startTime === null || endTime === null)) {
+      ctx.addIssue({
+        code: z.ZodIssueCode.custom,
+        message: "Start and end time must be set for repeating events",
+        path: ["startTime", "endTime"],
       });
     }
   },

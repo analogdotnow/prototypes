@@ -1,6 +1,6 @@
 import { Button } from "@/components/ui/button";
 import { cn } from "@/lib/utils";
-import { Trash2 } from "lucide-react";
+import { Repeat, Trash2 } from "lucide-react";
 import { type Variants, motion } from "motion/react";
 import { useEvents } from "../hooks/use-events";
 import { accounts } from "../shared/accounts";
@@ -36,9 +36,11 @@ export function CalendarEvent({ className, event }: CalendarEventProps) {
     accounts.find((account) => account.email === event.account)?.color ??
     "blue";
 
+  const participantsCount = event.selectedParticipants.length;
+
   return (
     <motion.div
-      layoutId={event.id}
+      layoutId={`${event.id}-${event.startTime.day}`}
       variants={variants}
       initial="initial"
       animate="normal"
@@ -56,14 +58,17 @@ export function CalendarEvent({ className, event }: CalendarEventProps) {
       layout="position"
     >
       <div className="shrink-0 bg-[color-mix(in_oklab,var(--foreground),var(--calendar-tint)_90%)] opacity-40 rounded-lg w-1  " />
-      <div className="flex flex-col items-start gap-y-1.5">
-        <p className="text-sm font-medium leading-none  text-calendar-foreground">
-          {event.title}
-        </p>
-        <p className="text-[12px] leading-none font-medium text-calendar-foreground">
-          {getDisplayTime(event)}
+      <div className="flex flex-col items-start gap-y-1.5 font-medium [&>p]:leading-none text-calendar-foreground">
+        <p className="text-sm">{event.title}</p>
+        <p className="text-[12px]">{getDisplayTime(event)}</p>
+        <p className="text-[12px] font-normal py-1">
+          {participantsCount}{" "}
+          {participantsCount === 1 ? "participant" : "participants"}
         </p>
       </div>
+      {event.rrule && (
+        <Repeat className="absolute top-2 right-[0.7rem] text-calendar-foreground size-3.5" />
+      )}
       <Button
         onClick={() => deleteEvent(event.id)}
         variant="ghost"

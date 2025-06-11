@@ -1,8 +1,9 @@
 import { Separator } from "@/components/ui/separator";
 import { Temporal } from "@js-temporal/polyfill";
+import { useDeepCompareMemo } from "@react-hookz/web";
 import { motion } from "motion/react";
-import { useMemo } from "react";
 import { Fragment } from "react/jsx-runtime";
+import { RRuleTemporal } from "rrule-temporal";
 import { CalendarEvent } from "./components/event-card";
 import EventForm from "./components/event-form";
 import { useEvents } from "./hooks/use-events";
@@ -38,8 +39,9 @@ export default function App() {
 function Events() {
   const { events } = useEvents();
 
-  const eventsByDate = useMemo(() => {
-    const grouped = events.reduce(
+  const eventsByDate = useDeepCompareMemo(() => {
+    const withRepeating = addRepeatingEvents(events);
+    const grouped = withRepeating.reduce(
       (acc, event) => {
         const date = event.startTime.toPlainDate().toString();
         acc[date] = [...(acc[date] || []), event];
@@ -64,7 +66,7 @@ function Events() {
             {events.sort(sortEventsPredicate).map((event) => (
               <CalendarEvent
                 key={event.id}
-                className="w-full h-16"
+                className="w-full min-h-16"
                 event={event}
               />
             ))}
@@ -94,4 +96,27 @@ const getColumnHeader = (date: string) => {
 const sortEventsPredicate = (a: StoredEvent, b: StoredEvent) => {
   if (a.isAllDay && !b.isAllDay) return -1;
   return Temporal.ZonedDateTime.compare(a.startTime, b.startTime);
+};
+
+const addRepeatingEvents = (events: StoredEvent[]): StoredEvent[] => {
+  for (const event of events) {
+    if (event.rrule) {
+      const rule = new RRuleTemporal({
+        rruleString: event.rrule,
+      });
+      const repeatingEvents = [];
+      for (const dt of rule.all()) {
+        repeatingEvents.push({
+          ...event,
+          startTime: dt,
+          endTime: dt.with({
+            hour: event.endTime.hour,
+            minute: event.endTime.minute,
+          }),
+        });
+      }
+      return events.concat(repeatingEvents.slice(1));
+    }
+  }
+  return events;
 };

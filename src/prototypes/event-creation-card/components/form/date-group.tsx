@@ -194,14 +194,15 @@ function RepeatTypeSelect({
   const handleChange = useCallback(
     (value: string) => {
       onChange(value as RepeatType);
+      console.log(value);
     },
     [onChange],
   );
 
   return (
-    <Select value={value ?? "daily"} onValueChange={handleChange}>
+    <Select value={value} onValueChange={handleChange}>
       <SelectTrigger className="h-6 bg-transparent text-muted-foreground/80 hover:text-foreground border-none shadow-none text-sm pl-0.5 w-[calc(50%+0.5rem)] pr-0 hover:[&_svg]:text-foreground select-none">
-        <SelectValue placeholder="Select repeat pattern" />
+        <SelectValue placeholder="Repeat pattern" />
       </SelectTrigger>
       <SelectContent>
         <SelectItem value="daily" disabled={rangeDuration === 0}>

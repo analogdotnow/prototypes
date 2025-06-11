@@ -43,6 +43,9 @@ const ToggleGroup = withForm({
               if (!value) {
                 const startDate = fieldApi.form.getFieldValue("startDate");
                 form.setFieldValue("endDate", startDate);
+                form.setFieldValue("repeatType", undefined);
+              } else {
+                form.setFieldValue("repeatType", "daily");
               }
             },
           }}
