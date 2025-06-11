@@ -64,6 +64,8 @@ export interface AsyncSelectProps<T> {
   clearable?: boolean;
   /** Enable multiple selection mode */
   multiple?: boolean;
+  /** Failed validation state */
+  isInvalid?: boolean;
 }
 
 export function AsyncSelect<T>({
@@ -85,6 +87,7 @@ export function AsyncSelect<T>({
   noResultsMessage,
   clearable = true,
   multiple = false,
+  isInvalid = false,
 }: AsyncSelectProps<T>) {
   const [open, setOpen] = useState(false);
   const [options, setOptions] = useState<T[]>([]);
@@ -193,6 +196,7 @@ export function AsyncSelect<T>({
           variant="outline"
           role="combobox"
           aria-expanded={open}
+          aria-invalid={isInvalid}
           className={cn(
             "justify-between w-full group/async-select font-normal",
             disabled && "opacity-50 cursor-not-allowed",

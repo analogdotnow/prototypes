@@ -4,7 +4,7 @@ import { MessageSquare } from "lucide-react";
 import { useId } from "react";
 import { useFieldContext } from "~/event-creation-card/hooks/form-context";
 
-const DescriptionField = () => {
+const DescriptionField = ({ maxLength = 200 }: { maxLength?: number }) => {
   const id = useId();
   const field = useFieldContext<string>();
 
@@ -18,6 +18,7 @@ const DescriptionField = () => {
         id={id}
         placeholder="Add description..."
         value={field.state.value}
+        maxLength={maxLength}
         onChange={(e) => field.handleChange(e.target.value)}
         className="field-sizing-content max-h-29.5 min-h-0 resize-none rounded-none border-none shadow-none focus-visible:ring-0 p-0.5"
       />

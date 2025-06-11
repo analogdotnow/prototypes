@@ -70,6 +70,7 @@ const DateGroup = withForm({
             range={range as DateRange}
             onStartDateChange={startField.handleChange}
             onEndDateChange={(value) => endField.handleChange(value)}
+            isInvalid={startField.state.meta.isValid === false}
           />
         ) : (
           <SingleDateInput
@@ -81,6 +82,7 @@ const DateGroup = withForm({
                 endField.handleChange(date);
               }
             }}
+            isInvalid={startField.state.meta.isValid === false}
           />
         )}
         <motion.div
@@ -108,9 +110,13 @@ const DateGroup = withForm({
   },
 });
 
-function SingleDateInput({ value, onChange }: DatePickerProps<CalendarDate>) {
+function SingleDateInput({
+  value,
+  onChange,
+  isInvalid,
+}: DatePickerProps<CalendarDate>) {
   return (
-    <DatePicker value={value} onChange={onChange}>
+    <DatePicker value={value} onChange={onChange} isInvalid={isInvalid}>
       <Label className="sr-only">Pick a date</Label>
       <div className="flex">
         <Group className="w-full leading-none">
@@ -134,10 +140,12 @@ function DateRangeInput({
   range,
   onStartDateChange,
   onEndDateChange,
+  isInvalid,
 }: {
   range: DateRange;
   onStartDateChange: (value: string) => void;
   onEndDateChange: (value: string) => void;
+  isInvalid?: boolean;
 }) {
   const handleChange = useCallback(
     (value: DateRange | null) => {
@@ -150,7 +158,11 @@ function DateRangeInput({
   );
 
   return (
-    <DateRangePicker value={range} onChange={handleChange}>
+    <DateRangePicker
+      value={range}
+      onChange={handleChange}
+      isInvalid={isInvalid}
+    >
       <Label className="sr-only">Pick a date range</Label>
       <div className="flex">
         <Group

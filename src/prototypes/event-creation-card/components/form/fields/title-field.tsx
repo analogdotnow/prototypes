@@ -14,9 +14,10 @@ const TitleField = () => {
         id={field.name}
         type="text"
         placeholder="New event name..."
-        className="w-full px-4 py-2 mb-2 shadow-none text-lg border-none bg-transparent focus:outline-hidden focus-visible:ring-0"
+        className="w-full px-4 py-2 mb-2 shadow-none text-lg border-none bg-transparent focus:outline-hidden focus-visible:ring-0 aria-invalid:text-destructive aria-invalid:placeholder:text-destructive/50"
         value={field.state.value}
         onChange={(e) => field.handleChange(e.target.value)}
+        aria-invalid={field.state.meta.isValid === false}
       />
     </div>
   );

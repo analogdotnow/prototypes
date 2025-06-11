@@ -30,6 +30,7 @@ const SelectedAccount = () => {
       <Select value={field.state.value} onValueChange={field.handleChange}>
         <SelectTrigger
           id="selected-account"
+          aria-invalid={field.state.meta.isValid === false}
           className="p-0 h-7 shadow-none border-none [&>span]:flex [&>span]:items-center [&>span]:gap-2 [&>span_img]:shrink-0 *:data-[slot=select-value]:gap-2.5"
         >
           <SelectValue placeholder="Select framework" />

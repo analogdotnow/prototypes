@@ -20,6 +20,7 @@ const ParticipantsField = withForm({
           <Participants
             value={field.state.value}
             onChange={field.handleChange}
+            isInvalid={field.state.meta.isValid === false}
           />
         )}
       </form.Field>
@@ -30,9 +31,14 @@ const ParticipantsField = withForm({
 interface ParticipantsFieldProps {
   value: Participant[];
   onChange: (value: Participant[]) => void;
+  isInvalid?: boolean;
 }
 
-const Participants = ({ value, onChange }: ParticipantsFieldProps) => {
+const Participants = ({
+  value,
+  onChange,
+  isInvalid,
+}: ParticipantsFieldProps) => {
   const [participants, setParticipants] = useState<User[]>(
     users.filter((user) => value.some((v) => v.id === user.id)),
   );
@@ -50,13 +56,14 @@ const Participants = ({ value, onChange }: ParticipantsFieldProps) => {
           label="Users"
           placeholder="No participants"
           noResultsMessage="No users found"
-          triggerClassName="shadow-none border-none bg-transparent hover:bg-transparent h-6 p-0.5"
+          triggerClassName="shadow-none border-none bg-transparent hover:bg-transparent h-6 p-0.5 aria-invalid:text-destructive"
           getDisplayValue={SelectedParticipants}
           renderOption={ParticipantOption}
           getOptionValue={(user) => user.id}
           value={participants}
           onChange={handleChange}
           fetcher={searchUsers}
+          isInvalid={isInvalid}
           multiple
         />
       </div>

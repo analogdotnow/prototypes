@@ -16,7 +16,8 @@ const LocationField = () => {
         id="location"
         type="text"
         placeholder="Add location..."
-        className="peer rounded-none border-none shadow-none focus-visible:ring-0 p-0.5 h-6"
+        aria-invalid={field.state.meta.isValid === false}
+        className="peer rounded-none border-none shadow-none focus-visible:ring-0 p-0.5 h-6 aria-invalid:text-destructive"
         value={field.state.value}
         onChange={(e) => field.handleChange(e.target.value)}
       />

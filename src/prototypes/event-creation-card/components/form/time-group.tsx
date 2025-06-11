@@ -1,6 +1,5 @@
 import { Button } from "@/components/ui/button";
 import { DateInput, TimeField } from "@/components/ui/datefield-rac";
-import { Separator } from "@/components/ui/separator";
 import { cn } from "@/lib/utils";
 import {
   type Time,
@@ -55,14 +54,19 @@ const TimeGroup = withForm({
       <AnimatePresence initial={false}>
         {!isAllDay && (
           <motion.div
-            initial={{ opacity: 0, height: 0 }}
-            animate={{ opacity: 1, height: "fit-content" }}
-            exit={{ opacity: 0, height: 0 }}
-            transition={{ duration: 0.15, ease: "easeInOut" }}
-            className="overflow-hidden"
-            layout
+            initial={{ opacity: 0, height: 0, marginBottom: 0 }}
+            animate={{
+              opacity: 1,
+              height: "fit-content",
+              marginBottom: "0.5rem",
+            }}
+            exit={{ opacity: 0, height: 0, marginBottom: 0 }}
+            transition={{
+              ease: "easeInOut",
+              duration: 0.3,
+            }}
           >
-            <section className="pl-3.5 pr-4 flex flex-col gap-y-3 pb-2">
+            <section className="pl-3.5 pr-4 flex flex-col gap-y-3 pb-2 border-b border-muted-foreground/10">
               <div className="grid grid-cols-[1fr_auto_1fr] pl-0.5">
                 <div className="flex items-center">
                   <Clock
@@ -77,6 +81,7 @@ const TimeGroup = withForm({
                     onChange={(value) =>
                       value && startField.handleChange(value.toString())
                     }
+                    isInvalid={startField.state.meta.isValid === false}
                   />
                 </div>
                 <ArrowRight className="size-4 text-muted-foreground/80 self-center" />
@@ -87,6 +92,7 @@ const TimeGroup = withForm({
                   onChange={(value) =>
                     value && endField.handleChange(value.toString())
                   }
+                  isInvalid={endField.state.meta.isValid === false}
                 />
               </div>
               <ActionsRow durationChangeHandler={getDurationChangeHandler}>
@@ -101,7 +107,6 @@ const TimeGroup = withForm({
                 </form.Field>
               </ActionsRow>
             </section>
-            <Separator className="bg-muted-foreground/10" />
           </motion.div>
         )}
       </AnimatePresence>

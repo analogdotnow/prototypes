@@ -7,15 +7,15 @@ const baseEventFormSchema = z.object({
   title: z
     .string()
     .min(1, "Title is required")
-    .max(100, "Title must be under 100 characters")
+    .max(60, "Title must be under 60 characters")
     .trim(),
   description: z
     .string()
-    .max(500, "Description must be under 500 characters")
+    .max(400, "Description must be under 400 characters")
     .optional(),
   location: z
     .string()
-    .max(200, "Location must be under 200 characters")
+    .max(60, "Location must be under 60 characters")
     .optional(),
   startTime: z.string().time("Invalid time format").nullable(),
   endTime: z.string().time("Invalid time format").nullable(),
@@ -52,6 +52,22 @@ export const eventFormSchema = baseEventFormSchema.superRefine((data, ctx) => {
 
   if (isAllDay) return;
 
+  if (startTime === null) {
+    ctx.addIssue({
+      code: z.ZodIssueCode.custom,
+      message: "Start time is required for non-all day events",
+      path: ["startTime"],
+    });
+  }
+
+  if (endTime === null) {
+    ctx.addIssue({
+      code: z.ZodIssueCode.custom,
+      message: "End time is required for non-all day events",
+      path: ["endTime"],
+    });
+  }
+
   // Time relationship validation (only when not all day)
   if (isSameDay(startDate, endDate) && startTime && endTime) {
     const startTimeObj = parseTime(startTime);
@@ -70,9 +86,10 @@ export const eventFormSchema = baseEventFormSchema.superRefine((data, ctx) => {
 
 export const eventFormSchemaWithRepeats = eventFormSchema.superRefine(
   (data, ctx) => {
-    const { startDate, endDate, startTime, endTime, repeats } = data;
+    const { startDate, endDate, repeats, repeatType } = data;
+    if (!repeats) return;
 
-    if (data.repeats && !data.repeatType) {
+    if (!repeatType) {
       ctx.addIssue({
         code: z.ZodIssueCode.custom,
         message: "Repeat type is required when repeat is enabled",
@@ -80,19 +97,11 @@ export const eventFormSchemaWithRepeats = eventFormSchema.superRefine(
       });
     }
 
-    if (repeats && isSameDay(startDate, endDate)) {
+    if (isSameDay(startDate, endDate)) {
       ctx.addIssue({
         code: z.ZodIssueCode.custom,
         message: "End date must be after start date for repeating events",
         path: ["endDate"],
-      });
-    }
-
-    if (repeats && (startTime === null || endTime === null)) {
-      ctx.addIssue({
-        code: z.ZodIssueCode.custom,
-        message: "Start and end time must be set for repeating events",
-        path: ["startTime", "endTime"],
       });
     }
   },
