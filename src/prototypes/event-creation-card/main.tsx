@@ -18,12 +18,12 @@ export default function App() {
         <EventForm />
       </div>
       <div className="grid grid-cols-1 grid-rows-[2rem_1fr] gap-3 pb-5 flex-1">
-        <h2 className="text-xl font-semibold text-foreground self-end">
+        <h2 className="text-xl font-semibold text-foreground self-end select-none">
           Your Events
         </h2>
         <div className="flex flex-col items-center justify-center border border-dashed border-input rounded-lg p-4 overflow-auto">
           {eventsCount === 0 ? (
-            <p className="text-muted-foreground">
+            <p className="text-muted-foreground select-none">
               No events yet. Create your first event!
             </p>
           ) : (
@@ -58,7 +58,9 @@ function Events() {
       {eventsByDate.map(([date, events], index) => (
         <Fragment key={date}>
           <div className="flex flex-col gap-3 h-full min-w-80">
-            <h3 className="text-lg text-foreground">{getColumnHeader(date)}</h3>
+            <h3 className="text-lg text-foreground select-none">
+              {getColumnHeader(date)}
+            </h3>
             {events.sort(sortEventsPredicate).map((event) => (
               <CalendarEvent
                 key={event.id}

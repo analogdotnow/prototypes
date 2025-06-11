@@ -91,7 +91,9 @@ function ToggleWithLabel({
         onCheckedChange={onCheckedChange}
         className="data-[state=checked]:bg-blue-400 h-5 [&>span]:size-4 data-[state=checked]:[&>span]:translate-x-5"
       />
-      <div className="text-sm text-muted-foreground mr-1">{label}</div>
+      <div className="text-sm text-muted-foreground mr-1 select-none">
+        {label}
+      </div>
     </div>
   );
 }

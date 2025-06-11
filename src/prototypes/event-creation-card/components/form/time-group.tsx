@@ -135,7 +135,7 @@ function ActionTag({
     <Button
       type="button"
       variant="ghost"
-      className="relative h-5 bg-background/40 border border-input rounded-md font-medium text-xs px-2 min-w-11"
+      className="relative h-5 bg-background/40 border border-input rounded-md font-medium text-xs px-2 min-w-11 select-none"
       {...props}
     >
       {children}
