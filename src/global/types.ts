@@ -1,0 +1,8 @@
+export type PrototypeEntry = {
+  id: string;
+  name: string;
+  description: string;
+  component: React.LazyExoticComponent<
+    React.ComponentType<Record<string, never>>
+  >;
+};
