@@ -7,12 +7,12 @@ import { accounts } from "../shared/accounts";
 import { getFormattedTime } from "../shared/time-utils";
 import type { StoredEvent } from "../shared/types";
 
-interface CalendarEventProps {
+interface EventCardProps {
   className?: string;
   event: StoredEvent;
 }
 
-export function CalendarEvent({ className, event }: CalendarEventProps) {
+function EventCard({ className, event }: EventCardProps) {
   const { deleteEvent } = useEvents();
   const variants: Variants = {
     initial: {
@@ -87,3 +87,5 @@ function getDisplayTime(event: StoredEvent): string {
   }
   return `${getFormattedTime(event.startTime)} - ${getFormattedTime(event.endTime)}`;
 }
+
+export default EventCard;
