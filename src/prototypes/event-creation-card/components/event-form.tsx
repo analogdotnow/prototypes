@@ -24,6 +24,7 @@ const EventForm = () => {
     onSubmit: ({ value }) => {
       const data = eventFormSchemaWithRepeats.parse(value);
       addEvent(data);
+      form.reset();
     },
   });
 

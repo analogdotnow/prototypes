@@ -27,13 +27,16 @@ const getDefaultFormValues = (): EventFormData => {
   return {
     account: accounts[0].email,
     title: "",
+    timezone,
     startTime: startTime.toString(),
     endTime: endTime.toString(),
     startDate: startDate.toString(),
     endDate: startDate.toString(),
-    timezone,
     isAllDay: false,
     repeats: false,
+    repeatType: undefined,
+    description: undefined,
+    location: undefined,
     selectedParticipants: [],
   };
 };

@@ -22,7 +22,7 @@ export const useExpandingInput = (value: string) => {
         placeCursorAtEnd();
       }, 100);
     }
-    if (value.length <= 30 && expanded) {
+    if (value.length <= 30 && expanded && focused) {
       toggleExpanded(false);
       setTimeout(() => {
         inputRef.current?.focus();

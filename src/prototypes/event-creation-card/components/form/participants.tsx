@@ -1,5 +1,6 @@
 import { AsyncSelect } from "@/components/ui/async-select";
 import { Avatar, AvatarFallback, AvatarImage } from "@/components/ui/avatar";
+import { useUpdateEffect } from "@react-hookz/web";
 import { Users } from "lucide-react";
 import { useState } from "react";
 import { withForm } from "~/event-creation-card/hooks/form";
@@ -47,6 +48,12 @@ const Participants = ({
     setParticipants(participants);
     onChange(participants);
   };
+
+  useUpdateEffect(() => {
+    if (value.length === 0) {
+      setParticipants([]);
+    }
+  }, [value]);
 
   return (
     <div className="flex gap-x-3 px-4 items-center">

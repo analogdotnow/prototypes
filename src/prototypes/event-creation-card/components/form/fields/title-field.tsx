@@ -70,14 +70,14 @@ const TitleField = ({
             value={field.state.value}
             onChange={(e) => field.handleChange(e.target.value)}
             onBlur={() => !isLoading && setFocused(false)}
-            className="relative px-4 py-0.5 text-lg leading-tight scrollbar-hidden field-sizing-content max-h-40 h-full min-h-0 resize-none shadow-none border-none bg-transparent focus:outline-hidden focus-visible:ring-0"
+            className="relative px-4 pt-0.5 pb-4 text-lg leading-tight scrollbar-hidden field-sizing-content max-h-40 h-full min-h-0 resize-none shadow-none border-none bg-transparent focus:outline-hidden focus-visible:ring-0"
           />
         ) : (
           <Input
             ref={refs.input}
             id={field.name}
             type="text"
-            placeholder="New event name..."
+            placeholder="Event name or prompt..."
             disabled={isLoading}
             value={field.state.value}
             onChange={(e) => field.handleChange(e.target.value)}
