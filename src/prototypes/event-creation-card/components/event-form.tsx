@@ -28,9 +28,11 @@ const EventForm = () => {
     },
   });
 
-  const { isLoading, data: aiData } = useAiInput(() =>
-    form.getFieldValue("title"),
-  );
+  const {
+    isLoading,
+    data: aiData,
+    enabled: aiEnabled,
+  } = useAiInput(() => form.getFieldValue("title"));
 
   useUpdateEffect(() => {
     if (!aiData) return;
@@ -62,7 +64,11 @@ const EventForm = () => {
     >
       <form.AppField name="title">
         {(field) => (
-          <field.TitleField cardSize={measurements} isLoading={isLoading} />
+          <field.TitleField
+            cardSize={measurements}
+            isLoading={isLoading}
+            aiEnabled={aiEnabled}
+          />
         )}
       </form.AppField>
       <div
