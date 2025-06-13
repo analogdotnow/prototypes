@@ -8,5 +8,6 @@ export const prototypes: PrototypeEntry[] = [
     description:
       "This card has all the fields needed to create an event, AI input is supported.",
     component: lazy(() => import("./event-creation-card/main")),
+    settings: lazy(() => import("./event-creation-card/settings")),
   },
 ];

@@ -25,7 +25,7 @@ import {
   Popover,
 } from "react-aria-components";
 import { withForm } from "~/event-creation-card/hooks/form";
-import type { EventFormData } from "~/event-creation-card/schemas/event-form-schema";
+import type { EventFormData } from "~/event-creation-card/schemas/form";
 import { defaultFormOptions } from "~/event-creation-card/shared/form-defaults";
 
 type DateRange = {
@@ -64,7 +64,7 @@ const DateGroup = withForm({
     }, [startField.state.value, endField.state.value, repeats]);
 
     return (
-      <div className="flex flex-col px-3.5">
+      <div className="flex flex-col pl-3.5 pr-4">
         {repeats ? (
           <DateRangeInput
             range={range as DateRange}

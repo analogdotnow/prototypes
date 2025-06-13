@@ -8,21 +8,22 @@ import {
   useSidebar,
 } from "@/components/sidebar";
 import ThemeToggle from "@/components/theme-toggle";
+import type { PrototypeEntry } from "@/types";
 import { motion } from "motion/react";
 import { prototypes } from "./prototypes";
 
 export default function App() {
-  // For now, default to the first prototype or empty string
-  // You can replace this with actual routing logic later
-  const currentPath = prototypes[0]?.id || "";
+  const CurrentPrototypeSettings = prototypes[0].settings;
 
   return (
     <main className="flex flex-col md:flex-row bg-gray-100 dark:bg-neutral-800 w-full overflow-hidden min-h-screen">
       <div className="absolute top-4 left-7 z-30 flex gap-2">
         <ThemeToggle />
-        <PrototypeSettings />
+        <PrototypeSettings>
+          {CurrentPrototypeSettings && <CurrentPrototypeSettings />}
+        </PrototypeSettings>
       </div>
-      <Dashboard currentPath={currentPath} />
+      <Dashboard prototype={prototypes[0]} />
       <Sidebar>
         <SidebarBody
           className="h-auto"
@@ -71,8 +72,7 @@ export const Logo = () => {
   );
 };
 
-const Dashboard = ({ currentPath }: { currentPath: string }) => {
-  const prototype = prototypes.find((p) => p.id === currentPath);
+const Dashboard = ({ prototype }: { prototype: PrototypeEntry }) => {
   const Prototype = prototype?.component;
 
   return (

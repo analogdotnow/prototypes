@@ -8,7 +8,7 @@ import { formOptions } from "@tanstack/react-form";
 import {
   type EventFormData,
   eventFormSchemaWithRepeats,
-} from "~/event-creation-card/schemas/event-form-schema";
+} from "~/event-creation-card/schemas/form";
 import { accounts } from "./accounts";
 
 const getDefaultFormValues = (): EventFormData => {

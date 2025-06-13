@@ -1,5 +1,5 @@
 import type { Temporal } from "@js-temporal/polyfill";
-import type { EventFormData } from "~/event-creation-card/schemas/event-form-schema";
+import type { EventOutputData } from "../schemas/form";
 
 export type COLORS = "red" | "orange" | "yellow" | "green" | "blue" | "purple";
 
@@ -10,7 +10,7 @@ export interface Account {
 
 export interface StoredEvent
   extends Omit<
-    EventFormData,
+    EventOutputData,
     | "repeats"
     | "repeatType"
     | "startDate"

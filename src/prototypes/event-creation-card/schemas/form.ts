@@ -2,7 +2,7 @@ import { isSameDay, parseDate, parseTime } from "@internationalized/date";
 import { z } from "zod";
 import { participantSchema } from "./participants";
 
-const baseEventFormSchema = z.object({
+export const baseEventFormSchema = z.object({
   account: z.string().email(),
   title: z
     .string()
@@ -15,13 +15,22 @@ const baseEventFormSchema = z.object({
     .optional(),
   location: z
     .string()
+    .describe("Place name or address")
     .max(60, "Location must be under 60 characters")
     .optional(),
   startTime: z.string().time("Invalid time format").nullable(),
   endTime: z.string().time("Invalid time format").nullable(),
-  startDate: z.string().transform((val) => parseDate(val)),
-  endDate: z.string().transform((val) => parseDate(val)),
-  timezone: z.string(),
+  startDate: z
+    .string()
+    .describe("ISO 8601 date string, with no time components")
+    .transform((val) => parseDate(val)),
+  endDate: z
+    .string()
+    .describe("ISO 8601 date string, with no time components")
+    .transform((val) => parseDate(val)),
+  timezone: z
+    .string()
+    .describe("IANA timezone identifier like 'Europe/Warsaw'"),
   isAllDay: z.boolean(),
   repeats: z.boolean(),
   repeatType: z
@@ -107,4 +116,5 @@ export const eventFormSchemaWithRepeats = eventFormSchema.superRefine(
   },
 );
 
-export type EventFormData = z.input<typeof eventFormSchema>;
+export type EventFormData = z.input<typeof eventFormSchemaWithRepeats>;
+export type EventOutputData = z.infer<typeof eventFormSchemaWithRepeats>;

@@ -21,6 +21,7 @@ function SubmitButton({ className }: { className?: string }) {
             "bg-blue-600 hover:bg-blue-600/90 focus-visible:ring-blue-400/50 dark:bg-blue-500 dark:hover:bg-blue-500/90 dark:focus-visible:ring-blue-400/50 select-none",
             className,
           )}
+          onClick={form.handleSubmit}
         >
           {isSubmitting ? "Creating..." : "Create Event"}
         </Button>

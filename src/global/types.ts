@@ -5,4 +5,7 @@ export type PrototypeEntry = {
   component: React.LazyExoticComponent<
     React.ComponentType<Record<string, never>>
   >;
+  settings?: React.LazyExoticComponent<
+    React.ComponentType<Record<string, never>>
+  >;
 };

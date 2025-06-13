@@ -16,7 +16,7 @@ export default function PrototypeSettings({
           <Cog className="size-4" aria-hidden="true" />
         </Button>
       </PopoverTrigger>
-      <PopoverContent className="w-72 p-3" align="start" side="bottom">
+      <PopoverContent className="w-72 p-3 min-h-32" align="start" side="bottom">
         {children || <SettingsPlaceholder />}
       </PopoverContent>
     </Popover>

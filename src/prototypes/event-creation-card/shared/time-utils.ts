@@ -1,19 +1,19 @@
 import {
-  parseDate,
+  type CalendarDate,
   parseTime,
   toCalendarDateTime,
   toZoned,
 } from "@internationalized/date";
 import { Temporal } from "@js-temporal/polyfill";
-import type { EventFormData } from "../schemas/event-form-schema";
+import type { EventOutputData } from "../schemas/form";
 
 type DateFields = Pick<
-  EventFormData,
+  EventOutputData,
   "startDate" | "endDate" | "startTime" | "endTime" | "timezone"
 >;
 
 type StringDateFields = {
-  date: string;
+  date: CalendarDate;
   time: string | null;
   timezone: string;
 };
@@ -27,7 +27,7 @@ export function getZonedEventTimes(data: DateFields) {
         timezone: data.timezone,
       }),
       endTime: getTemporalZonedDateTime({
-        date: data.endDate,
+        date: data.startDate,
         time: data.endTime,
         timezone: data.timezone,
       }),
@@ -45,10 +45,9 @@ export function getTemporalZonedDateTime(
   strings: StringDateFields,
 ): Temporal.ZonedDateTime {
   const { date, time, timezone } = strings;
-  const parsedDate = parseDate(date);
   const parsedTime = time ? parseTime(time) : undefined;
 
-  const dateTime = toCalendarDateTime(parsedDate, parsedTime);
+  const dateTime = toCalendarDateTime(date, parsedTime);
   const zoned = toZoned(dateTime, timezone);
 
   return Temporal.ZonedDateTime.from({

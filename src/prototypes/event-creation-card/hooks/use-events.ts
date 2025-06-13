@@ -1,7 +1,6 @@
-import { parseDate } from "@internationalized/date";
 import { useAtom } from "jotai";
 import { useCallback } from "react";
-import type { EventFormData } from "../schemas/event-form-schema";
+import type { EventOutputData } from "../schemas/form";
 import { generateRRule } from "../shared/rrule-utils";
 import { getZonedEventTimes } from "../shared/time-utils";
 import type { StoredEvent } from "../shared/types";
@@ -11,20 +10,19 @@ export function useEvents() {
   const [events, setEvents] = useAtom(eventsAtom);
 
   const addEvent = useCallback(
-    (eventInput: EventFormData): StoredEvent | undefined => {
+    (eventInput: EventOutputData): StoredEvent | undefined => {
       const now = new Date().toISOString();
       const id = crypto.randomUUID();
 
       const { repeatType, endDate } = eventInput;
-      const endDateObj = parseDate(endDate);
       const { startTime, endTime } = getZonedEventTimes(eventInput);
       if (!startTime || !endTime) {
         return;
       }
       const endDateUTC = endTime.withTimeZone("UTC").with({
-        year: endDateObj.year,
-        month: endDateObj.month,
-        day: endDateObj.day,
+        year: endDate.year,
+        month: endDate.month,
+        day: endDate.day,
       });
 
       const recurrenceRule = repeatType
