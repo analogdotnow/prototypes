@@ -33,10 +33,10 @@ export function ErrorsPopover({
           </Button>
         </TooltipTrigger>
         <TooltipContent
-          className="p-0 overflow-clip min-w-52 max-w-60 border-destructive/40 dark:border-destructive/25"
+          className="p-0 overflow-clip min-w-52 max-w-60 border-destructive/30 dark:border-destructive/25"
           {...props}
         >
-          <div className="bg-destructive/25 dark:bg-destructive/10 px-3 py-2">
+          <div className="bg-destructive/10 dark:bg-destructive/10 px-3 py-2">
             <p className="font-medium mb-1">Errors</p>
             <ul className="list-disc pl-3">
               {Object.entries(errors).map(([, errors]) =>
