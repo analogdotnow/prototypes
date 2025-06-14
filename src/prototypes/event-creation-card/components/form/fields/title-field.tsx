@@ -71,7 +71,9 @@ const TitleField = ({
           <Textarea
             ref={refs.textarea}
             id={field.name}
-            placeholder="Event name or prompt..."
+            placeholder={
+              aiEnabled ? "Event name or prompt..." : "New event name..."
+            }
             disabled={isLoading}
             value={field.state.value}
             onChange={(e) => field.handleChange(e.target.value)}
@@ -83,7 +85,9 @@ const TitleField = ({
             ref={refs.input}
             id={field.name}
             type="text"
-            placeholder="Event name or prompt..."
+            placeholder={
+              aiEnabled ? "Event name or prompt..." : "New event name..."
+            }
             disabled={isLoading}
             value={field.state.value}
             onChange={(e) => field.handleChange(e.target.value)}

@@ -50,6 +50,8 @@ export interface AsyncSelectProps<T> {
   label: string;
   /** Placeholder text when no selection */
   placeholder?: string;
+  /** Placeholder text when searching */
+  searchPlaceholder?: string;
   /** Disable the entire select */
   disabled?: boolean;
   /** Custom width for the popover */
@@ -79,6 +81,7 @@ export function AsyncSelect<T>({
   loadingSkeleton,
   label,
   placeholder = "Select...",
+  searchPlaceholder,
   value,
   onChange,
   disabled = false,
@@ -223,7 +226,9 @@ export function AsyncSelect<T>({
         <Command className="[&_div[cmdk-input-wrapper]]:px-3">
           <div className="relative">
             <CommandInput
-              placeholder={`Search ${label.toLowerCase()}...`}
+              placeholder={
+                searchPlaceholder ?? `Search ${label.toLowerCase()}...`
+              }
               value={searchTerm}
               onValueChange={setSearchTerm}
               className="focus-visible:ring-0 rounded-none border-none"
