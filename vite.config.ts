@@ -10,16 +10,16 @@ import svgr from "vite-plugin-svgr";
 
 const ogOptions: Options = {
   basic: {
-    url: "https://proto.analog.now",
+    url: "https://prototypes.analog.now",
     title: "Analog Prototypes",
     type: "website",
-    image: "https://proto.analog.now/og-image.png",
+    image: "https://prototypes.analog.now/og-image.png",
     description: "A collection of UI prototypes for the Analog Calendar.",
     locale: "en_US",
     siteName: "Analog Prototypes",
   },
   twitter: {
-    image: "https://proto.analog.now/og-image.png",
+    image: "https://prototypes.analog.now/og-image.png",
     imageAlt: "Analog Prototypes",
   },
 };
