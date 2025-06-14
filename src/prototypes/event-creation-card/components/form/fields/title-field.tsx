@@ -158,7 +158,7 @@ const fieldMotionConfig: MotionProps = {
       paddingTop: "0.25rem",
     },
     main: ({ expanded, aiEnabled }) => ({
-      y: expanded ? "2.75rem" : 0,
+      y: expanded ? "2.5rem" : 0,
       scale: expanded ? 1.05 : 1,
       height: expanded ? "400%" : "100%",
       paddingTop: expanded ? "1rem" : "0.25rem",
