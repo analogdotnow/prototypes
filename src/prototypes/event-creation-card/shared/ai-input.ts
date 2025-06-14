@@ -34,6 +34,7 @@ KEY REQUIREMENTS:
 • Default to today's date if no date/time specified
 • Non-all-day events MUST have both start and end times, choose appropriate event duration based on context
 • If start date is different from end date, repeat type MUST be provided
+• If end date is not specified for repeating events, use the (start date + 1 year) as the end date
 
 CURRENT TIME: ${currentTimeString}
 
