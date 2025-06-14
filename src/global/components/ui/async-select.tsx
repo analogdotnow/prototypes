@@ -98,26 +98,28 @@ export function AsyncSelect<T>({
 
   const cache = useMap<string, T[]>();
 
+  const getCachedData = useCallback(
+    (cacheKey: string, query?: string) => {
+      if (!cache.has(cacheKey)) return false;
+      const cachedData = cache.get(cacheKey) ?? [];
+      setOptions(cachedData);
+      if (!query) setOriginalOptions(cachedData);
+      return true;
+    },
+    [cache],
+  );
+
   const fetchOptions = useCallback(
     async (query?: string) => {
-      const cacheKey = query || "__initial__";
-      if (cache.has(cacheKey)) {
-        const cachedData = cache.get(cacheKey) ?? [];
-        setOptions(cachedData);
-        if (!query) {
-          setOriginalOptions(cachedData);
-        }
-        return;
-      }
+      const cacheKey = query ?? "__initial__";
+      if (getCachedData(cacheKey, query)) return;
       try {
         setLoading(true);
         setError(null);
         const data = await fetcher(query);
         cache.set(cacheKey, data);
-        if (!query) {
-          setOriginalOptions(data);
-        }
         setOptions(data);
+        if (!query) setOriginalOptions(data);
       } catch (err) {
         setError(
           err instanceof Error ? err.message : "Failed to fetch options",
@@ -126,7 +128,7 @@ export function AsyncSelect<T>({
         setLoading(false);
       }
     },
-    [fetcher, cache],
+    [fetcher, cache, getCachedData],
   );
 
   const clearSearch = useCallback(() => setOptions(value), [value]);
@@ -144,7 +146,7 @@ export function AsyncSelect<T>({
     preload ? 0 : 500,
   );
 
-  useMountEffect(fetchOptions);
+  useMountEffect(() => value.length === 0 && fetchOptions());
 
   useEffect(() => {
     if (!preload) return;

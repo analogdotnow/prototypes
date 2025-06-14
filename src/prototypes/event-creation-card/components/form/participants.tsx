@@ -1,5 +1,6 @@
 import { AsyncSelect } from "@/components/ui/async-select";
 import { Avatar, AvatarFallback, AvatarImage } from "@/components/ui/avatar";
+import { cn } from "@/lib/utils";
 import { useUpdateEffect } from "@react-hookz/web";
 import { Users } from "lucide-react";
 import { useState } from "react";
@@ -8,8 +9,8 @@ import type { Participant } from "~/event-creation-card/schemas/participants";
 import { defaultFormOptions } from "~/event-creation-card/shared/form-defaults";
 import {
   type User,
+  getUsersFromParticipants,
   searchUsers,
-  users,
 } from "~/event-creation-card/shared/users";
 
 const ParticipantsField = withForm({
@@ -41,7 +42,7 @@ const Participants = ({
   isInvalid,
 }: ParticipantsFieldProps) => {
   const [participants, setParticipants] = useState<User[]>(
-    users.filter((user) => value.some((v) => v.id === user.id)),
+    getUsersFromParticipants(value),
   );
 
   const handleChange = (participants: User[]) => {
@@ -79,17 +80,38 @@ const Participants = ({
 };
 
 function ParticipantOption(user: User) {
+  const primaryText = user.name ?? user.email;
+  const secondaryText = user.name ? user.email : undefined;
+  const defaultInitials = primaryText.charAt(0).toUpperCase();
+  const initials = user.initials ?? defaultInitials;
+
   return (
     <div className="flex items-center gap-3 px-2">
       <Avatar className="size-6">
         <AvatarImage src={user.avatarUrl} alt={`${user.name} avatar`} />
-        <AvatarFallback>{user.initials}</AvatarFallback>
+        <AvatarFallback
+          className={cn(
+            "bg-ring/40 text-[0.7rem]",
+            initials.length === 1 && "text-sm",
+          )}
+        >
+          {initials}
+        </AvatarFallback>
       </Avatar>
       <div className="flex flex-col">
-        <div className="font-medium text-sm leading-none">{user.name}</div>
-        <div className="text-xs text-muted-foreground leading-tight">
-          {user.email}
+        <div
+          className={cn(
+            "font-medium text-sm leading-loose",
+            secondaryText && "leading-none",
+          )}
+        >
+          {primaryText}
         </div>
+        {secondaryText && (
+          <div className="text-xs text-muted-foreground leading-tight">
+            {secondaryText}
+          </div>
+        )}
       </div>
     </div>
   );
@@ -98,12 +120,15 @@ function ParticipantOption(user: User) {
 function SelectedParticipants(participants: User[]) {
   if (participants.length === 0) return null;
 
-  const sorted = [...participants].sort(
-    (a, b) => a.name.length - b.name.length,
-  );
+  const sorted = [...participants].sort((a, b) => {
+    if (a.name && b.name) {
+      return a.name.length - b.name.length;
+    }
+    return a.email.length - b.email.length;
+  });
   const displayText = sorted
     .slice(0, 2)
-    .map((p) => p.name)
+    .map((p) => p.name ?? p.email)
     .join(", ");
 
   return (
