@@ -3,11 +3,12 @@ import { Menu, X } from "lucide-react";
 import { AnimatePresence, motion } from "motion/react";
 import type * as React from "react";
 import { createContext, useContext, useState } from "react";
+import { Link, useLocation } from "react-router";
 
 interface Links {
   label: string;
   href: string;
-  icon: React.JSX.Element | React.ReactNode;
+  index: number;
 }
 
 interface SidebarContextProps {
@@ -161,28 +162,43 @@ export const SidebarLink = ({
 }: {
   link: Links;
   className?: string;
-  props?: React.ComponentProps<"a">;
+  props?: React.ComponentProps<typeof Link>;
 }) => {
   const { open, animate } = useSidebar();
+  const location = useLocation();
+  const isActive = location.pathname === link.href;
+
   return (
-    <a
-      href={link.href}
+    <Link
+      to={link.href}
       className={cn(
         "flex items-center justify-start gap-2.5 group/sidebar py-2",
         className,
       )}
       {...props}
     >
-      {link.icon}
+      <span
+        className={cn(
+          "text-primary bg-transparent border border-primary rounded-full size-6 flex flex-shrink-0 pt-px justify-center text-sm font-mono",
+          isActive
+            ? "bg-primary text-primary-foreground border-transparent"
+            : "group-hover/sidebar:bg-primary/5",
+        )}
+      >
+        {link.index + 1}
+      </span>
       <motion.span
         animate={{
           display: animate ? (open ? "inline-block" : "none") : "inline-block",
           opacity: animate ? (open ? 1 : 0) : 1,
         }}
-        className="text-neutral-700 dark:text-neutral-200 group-hover/sidebar:translate-x-1 transition duration-150 whitespace-pre inline-block !p-0 !m-0"
+        className={cn(
+          "text-neutral-700 dark:text-neutral-200 font-light group-hover/sidebar:translate-x-1 transition duration-150 whitespace-pre inline-block !p-0 !m-0",
+          isActive && "font-semibold",
+        )}
       >
         {link.label}
       </motion.span>
-    </a>
+    </Link>
   );
 };

@@ -4,11 +4,15 @@ import {
   PopoverTrigger,
 } from "@/components/ui/popover";
 import { Cog, Smile } from "lucide-react";
+import { useParams } from "react-router";
+import { prototypes } from "~/index";
 import { Button } from "./ui/button";
 
-export default function PrototypeSettings({
-  children,
-}: { children?: React.ReactNode }) {
+export default function PrototypeSettings() {
+  const { prototypeId } = useParams<{ prototypeId: string }>();
+  const currentPrototype = prototypes.find((p) => p.id === prototypeId);
+  const CurrentPrototypeSettings = currentPrototype?.settings;
+
   return (
     <Popover>
       <PopoverTrigger asChild>
@@ -17,7 +21,11 @@ export default function PrototypeSettings({
         </Button>
       </PopoverTrigger>
       <PopoverContent className="w-72 p-3 min-h-32" align="start" side="bottom">
-        {children || <SettingsPlaceholder />}
+        {CurrentPrototypeSettings ? (
+          <CurrentPrototypeSettings />
+        ) : (
+          <SettingsPlaceholder />
+        )}
       </PopoverContent>
     </Popover>
   );

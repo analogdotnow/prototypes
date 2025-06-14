@@ -10,4 +10,10 @@ export const prototypes: PrototypeEntry[] = [
     component: lazy(() => import("./event-creation-card/main")),
     settings: lazy(() => import("./event-creation-card/settings")),
   },
+  {
+    id: "example",
+    name: "New example",
+    description: "This is an example prototype.",
+    component: lazy(() => import("./example/main")),
+  },
 ];

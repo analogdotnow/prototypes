@@ -1,0 +1,14 @@
+@keyframes rotateY {
+  from {
+    transform: rotateY(0deg);
+  }
+  to {
+    transform: rotateY(360deg);
+  }
+}
+
+@layer utilities {
+  .animate-rotateY-pulse {
+    animation: rotateY 15s linear infinite, var(--animate-pulse);
+  }
+}
