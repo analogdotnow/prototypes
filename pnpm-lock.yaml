@@ -147,6 +147,9 @@ importers:
       vite:
         specifier: ^5.4.2
         version: 5.4.19(@types/node@22.15.29)(lightningcss@1.30.1)
+      vite-plugin-open-graph:
+        specifier: 2.0.6
+        version: 2.0.6
       vite-plugin-svgr:
         specifier: 4.3.0
         version: 4.3.0(rollup@4.41.1)(typescript@5.8.3)(vite@5.4.19(@types/node@22.15.29)(lightningcss@1.30.1))
@@ -2606,6 +2609,10 @@ packages:
     resolution: {integrity: sha512-Rb46I4cGGVBmjamjphe8L/UnvJD+uPPtTkNvX5mZgqdbavhI4EbgIWJiIHXJ8bc/i9EQGPRh4DwEURJ552Do0A==}
     peerDependencies:
       react: ^16.8.0 || ^17.0.0 || ^18.0.0 || ^19.0.0
+
+  vite-plugin-open-graph@2.0.6:
+    resolution: {integrity: sha512-puGPr/V4C0HN3fxtvglulxmkPZiQp6yoASZqyH54LrK/DKiOgjC0V3glWcE6BFto3X3NK50aasE6tWruzAnEMA==}
+    engines: {node: '>=16'}
 
   vite-plugin-svgr@4.3.0:
     resolution: {integrity: sha512-Jy9qLB2/PyWklpYy0xk0UU3TlU0t2UMpJXZvf+hWII1lAmRHrOUKi11Uw8N3rxoNk7atZNYO3pR3vI1f7oi+6w==}
@@ -5464,6 +5471,8 @@ snapshots:
   use-sync-external-store@1.5.0(react@19.1.0):
     dependencies:
       react: 19.1.0
+
+  vite-plugin-open-graph@2.0.6: {}
 
   vite-plugin-svgr@4.3.0(rollup@4.41.1)(typescript@5.8.3)(vite@5.4.19(@types/node@22.15.29)(lightningcss@1.30.1)):
     dependencies:

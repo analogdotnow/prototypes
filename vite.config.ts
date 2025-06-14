@@ -5,7 +5,24 @@ import jotaiDebugLabel from "jotai/babel/plugin-debug-label";
 import jotaiReactRefresh from "jotai/babel/plugin-react-refresh";
 import Unfonts from "unplugin-fonts/vite";
 import { defineConfig } from "vite";
+import ogPlugin, { type Options } from "vite-plugin-open-graph";
 import svgr from "vite-plugin-svgr";
+
+const ogOptions: Options = {
+  basic: {
+    url: "https://proto.analog.now",
+    title: "Analog Prototypes",
+    type: "website",
+    image: "https://proto.analog.now/og-image.png",
+    description: "A collection of UI prototypes for the Analog Calendar.",
+    locale: "en_US",
+    siteName: "Analog Prototypes",
+  },
+  twitter: {
+    image: "https://proto.analog.now/og-image.png",
+    imageAlt: "Analog Prototypes",
+  },
+};
 
 // https://vitejs.dev/config/
 export default defineConfig({
@@ -52,6 +69,7 @@ export default defineConfig({
         preload: true,
       },
     }),
+    ogPlugin(ogOptions),
   ],
   resolve: {
     alias: {
