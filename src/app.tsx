@@ -8,8 +8,10 @@ import {
   useSidebar,
 } from "@/components/sidebar";
 import ThemeToggle from "@/components/theme-toggle";
+import { useFeedback } from "@/hooks/use-feedback";
 import type { PrototypeEntry } from "@/types";
 import { motion } from "motion/react";
+import { Toaster } from "sonner";
 import { prototypes } from "./prototypes";
 
 export default function App() {
@@ -56,6 +58,7 @@ export default function App() {
           </div>
         </SidebarBody>
       </Sidebar>
+      <Toaster position="bottom-center" />
     </main>
   );
 }
@@ -74,6 +77,8 @@ export const Logo = () => {
 
 const Dashboard = ({ prototype }: { prototype: PrototypeEntry }) => {
   const Prototype = prototype?.component;
+
+  useFeedback();
 
   return (
     <div className="flex flex-1">
