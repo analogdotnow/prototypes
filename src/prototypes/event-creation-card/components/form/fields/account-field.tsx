@@ -33,7 +33,7 @@ const SelectedAccount = () => {
           aria-invalid={field.state.meta.isValid === false}
           className="p-0 h-7 shadow-none border-none [&>span]:flex [&>span]:items-center [&>span]:gap-2 [&>span_img]:shrink-0 *:data-[slot=select-value]:gap-2.5"
         >
-          <SelectValue placeholder="Select framework" />
+          <SelectValue placeholder="Select account" />
         </SelectTrigger>
         <SelectContent className="[&_*[role=option]]:ps-2 [&_*[role=option]]:pe-8 [&_*[role=option]>span]:start-auto [&_*[role=option]>span]:end-2 [&_*[role=option]>span]:flex [&_*[role=option]>span]:items-center [&_*[role=option]>span]:gap-2.5">
           <SelectGroup>

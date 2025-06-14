@@ -2,15 +2,19 @@ import type { Account } from "./types";
 
 export const accounts: Account[] = [
   {
-    email: "aaron.mahlke@gmail.com",
+    email: "nizzy@0.email",
     color: "red",
   },
   {
-    email: "aaron.m@outlook.com",
+    email: "anonymous@oss.now",
+    color: "orange",
+  },
+  {
+    email: "theobrowne@icloud.com",
     color: "purple",
   },
   {
-    email: "random.user@icloud.com",
+    email: "outlook.is.ass@outlook.com",
     color: "blue",
   },
 ];
