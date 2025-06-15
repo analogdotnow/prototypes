@@ -1,9 +1,11 @@
 import { StrictMode } from "react";
 import { createRoot } from "react-dom/client";
-import { AppLayout, Dashboard } from "./app";
-import "./index.css";
 import { Navigate, RouterProvider, createBrowserRouter } from "react-router";
+import { AppLayout, Dashboard } from "./app";
 import { prototypes } from "./prototypes";
+
+import "./index.css";
+import "unfonts.css";
 
 const rootElement = document.getElementById("root");
 if (!rootElement) {
