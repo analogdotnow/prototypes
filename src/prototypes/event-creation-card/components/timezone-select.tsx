@@ -15,7 +15,7 @@ import {
 } from "@/components/ui/popover";
 import { cn } from "@/lib/utils";
 import { CheckIcon, ChevronDownIcon } from "lucide-react";
-import { useId, useMemo, useState } from "react";
+import { useCallback, useId, useMemo, useState } from "react";
 
 const timezones = Intl.supportedValuesOf("timeZone");
 
@@ -72,6 +72,23 @@ export function TimezoneSelect({
     return formattedTimezones;
   }, [value]);
 
+  const filterFn = useCallback(
+    (value: string, search: string) => {
+      const timezone = sortedTimezones.find((tz) => tz.value === value);
+      if (!timezone) return 0;
+
+      const normalizedValue = value.toLowerCase();
+      const normalizedLabel = timezone.label.toLowerCase();
+      const normalizedSearch = search.toLowerCase();
+
+      return normalizedValue.includes(normalizedSearch) ||
+        normalizedLabel.includes(normalizedSearch)
+        ? 1
+        : 0;
+    },
+    [sortedTimezones],
+  );
+
   return (
     <div className="flex flex-1">
       <Label htmlFor={id} className="sr-only">
@@ -104,13 +121,7 @@ export function TimezoneSelect({
           align="end"
           side="bottom"
         >
-          <Command
-            filter={(value, search) => {
-              const normalizedValue = value.toLowerCase();
-              const normalizedSearch = search.toLowerCase().replace(/\s+/g, "");
-              return normalizedValue.includes(normalizedSearch) ? 1 : 0;
-            }}
-          >
+          <Command filter={filterFn}>
             <CommandInput
               placeholder="Search timezone..."
               className="text-xs h-8 p-0"
