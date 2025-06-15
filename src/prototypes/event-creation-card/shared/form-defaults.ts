@@ -34,7 +34,6 @@ const getDefaultFormValues = (): EventFormData => {
     endDate: startDate.toString(),
     isAllDay: false,
     repeats: false,
-    repeatType: undefined,
     description: undefined,
     location: undefined,
     selectedParticipants: [],

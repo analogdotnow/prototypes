@@ -204,10 +204,7 @@ function RepeatTypeSelect({
   rangeDuration: number;
 }) {
   const handleChange = useCallback(
-    (value: string) => {
-      onChange(value as RepeatType);
-      console.log(value);
-    },
+    (value: string) => value && onChange(value as RepeatType),
     [onChange],
   );
 

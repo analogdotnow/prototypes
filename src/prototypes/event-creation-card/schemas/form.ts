@@ -33,11 +33,7 @@ export const baseEventFormSchema = z.object({
     .describe("IANA timezone identifier like 'Europe/Warsaw'"),
   isAllDay: z.boolean(),
   repeats: z.boolean(),
-  repeatType: z
-    .enum(["daily", "weekly", "monthly"], {
-      errorMap: () => ({ message: "Invalid repeat type" }),
-    })
-    .optional(),
+  repeatType: z.enum(["daily", "weekly", "monthly"]).optional(),
   selectedParticipants: z.array(participantSchema).refine(
     (participants) => {
       const ids = participants.map((p) => p.id);
