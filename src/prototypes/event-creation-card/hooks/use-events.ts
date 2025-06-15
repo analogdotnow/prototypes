@@ -19,11 +19,13 @@ export function useEvents() {
       if (!startTime || !endTime) {
         return;
       }
-      const endDateUTC = endTime.withTimeZone("UTC").with({
-        year: endDate.year,
-        month: endDate.month,
-        day: endDate.day,
-      });
+      const endDateUTC = endTime
+        .with({
+          year: endDate.year,
+          month: endDate.month,
+          day: endDate.day,
+        })
+        .withTimeZone("UTC");
 
       const recurrenceRule = repeatType
         ? generateRRule({
