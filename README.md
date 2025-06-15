@@ -1,6 +1,6 @@
 # Analog Prototypes
 
-<img src="github/cover.jpg" alt="Analog Prototypes" width="700">
+<img src="github/cover.jpg" alt="Analog Prototypes" width="620">
 
 <br>
 
