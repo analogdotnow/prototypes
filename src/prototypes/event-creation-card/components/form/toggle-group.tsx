@@ -10,7 +10,7 @@ const ToggleGroup = withForm({
   ...defaultFormOptions,
   render: ({ form }) => {
     return (
-      <div className="flex relative h-fit border-y border-muted-foreground/10 py-1 px-4">
+      <div className="flex relative h-fit border-y border-muted-foreground/10 py-1.5 px-4">
         <form.Field
           name="isAllDay"
           listeners={{

@@ -58,7 +58,7 @@ const TimeGroup = withForm({
             animate={{
               opacity: 1,
               height: "fit-content",
-              marginBottom: "0.5rem",
+              marginBottom: "0.625rem",
             }}
             exit={{ opacity: 0, height: 0, marginBottom: 0 }}
             transition={{
@@ -66,7 +66,7 @@ const TimeGroup = withForm({
               duration: 0.3,
             }}
           >
-            <section className="pl-3.5 pr-4 flex flex-col gap-y-3 pb-2 border-b border-muted-foreground/10">
+            <section className="pl-3.5 pr-4 flex flex-col gap-y-2.5 pb-2.5 border-b border-muted-foreground/10">
               <div className="grid grid-cols-[1fr_auto_1fr] pl-0.5">
                 <div className="flex items-center">
                   <Clock

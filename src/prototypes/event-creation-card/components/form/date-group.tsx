@@ -86,22 +86,23 @@ const DateGroup = withForm({
           />
         )}
         <motion.div
-          initial={{ opacity: 0, height: 0, marginTop: 0 }}
+          initial={{ opacity: 0, height: 0 }}
           animate={{
             opacity: repeats ? 1 : 0,
             height: repeats ? "fit-content" : 0,
-            marginTop: repeats ? "0.5rem" : 0,
           }}
-          transition={{ duration: 0.15, ease: "easeInOut" }}
+          transition={{ duration: 0.2, ease: "easeInOut" }}
           className="overflow-hidden pl-0.5"
         >
           <form.Field name="repeatType">
             {(repeatTypeField) => (
-              <RepeatTypeSelect
-                rangeDuration={duration}
-                value={repeatTypeField.state.value}
-                onChange={repeatTypeField.handleChange}
-              />
+              <div className="pt-2">
+                <RepeatTypeSelect
+                  rangeDuration={duration}
+                  value={repeatTypeField.state.value}
+                  onChange={repeatTypeField.handleChange}
+                />
+              </div>
             )}
           </form.Field>
         </motion.div>
@@ -209,7 +210,7 @@ function RepeatTypeSelect({
   );
 
   return (
-    <Select value={value} onValueChange={handleChange}>
+    <Select value={value ?? "daily"} onValueChange={handleChange}>
       <SelectTrigger className="h-6 bg-transparent text-muted-foreground/80 hover:text-foreground border-none shadow-none text-sm pl-0.5 w-[calc(50%+0.5rem)] pr-0 hover:[&_svg]:text-foreground select-none">
         <SelectValue placeholder="Repeat pattern" />
       </SelectTrigger>

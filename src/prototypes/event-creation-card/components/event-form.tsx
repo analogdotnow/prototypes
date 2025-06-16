@@ -75,9 +75,9 @@ const EventForm = () => {
         className="relative rounded-lg border shadow-md dark:shadow-accent/40 bg-primary-foreground border-border"
         ref={ref}
       >
-        <div className="py-3">
+        <div className="pb-4 pt-3.5">
           <TimeGroup form={form} />
-          <div className="flex flex-col gap-y-2">
+          <div className="flex flex-col gap-y-2.5">
             <DateGroup form={form} />
             <ToggleGroup form={form} />
             <form.AppField name="description">
