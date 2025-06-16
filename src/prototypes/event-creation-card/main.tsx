@@ -22,7 +22,7 @@ export default function App() {
         <h2 className="text-xl font-semibold text-foreground self-end select-none">
           Your Events
         </h2>
-        <ScrollArea className="flex flex-col items-center justify-center border border-dashed border-input rounded-lg p-4">
+        <ScrollArea className="border border-dashed border-input rounded-lg size-full p-4">
           {eventsCount === 0 ? (
             <div className="flex flex-col h-full items-center justify-center text-muted-foreground/60 dark:text-muted-foreground/40 gap-4 pb-6">
               <Calendar className="size-14" strokeWidth={0.9} />
@@ -46,7 +46,7 @@ function Events() {
   const { renderedEvents } = useRenderedEvents();
 
   return (
-    <motion.div className="flex size-full" layout>
+    <motion.div className="flex h-full" layout>
       {renderedEvents.map(([date, events], index) => (
         <Fragment key={date}>
           <div className="flex flex-col gap-3 h-full min-w-[16.5rem] 2xl:min-w-80">
@@ -65,7 +65,7 @@ function Events() {
             orientation="vertical"
             className={cn(
               "h-full bg-transparent bg-[linear-gradient(to_bottom_in_oklab,transparent_0%,var(--border)_15%,var(--border)_85%,transparent_100%)] mx-4",
-              index === renderedEvents.length - 1 && "bg-none",
+              index === renderedEvents.length - 1 && "bg-none mx-1",
             )}
           />
         </Fragment>
