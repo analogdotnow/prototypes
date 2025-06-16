@@ -17,7 +17,7 @@ const DescriptionField = ({ maxLength = 200 }: { maxLength?: number }) => {
       <Textarea
         id={id}
         placeholder="Add description..."
-        value={field.state.value}
+        value={field.state.value ?? ""}
         maxLength={maxLength}
         onChange={(e) => field.handleChange(e.target.value)}
         className="field-sizing-content max-h-29.5 min-h-0 resize-none rounded-none border-none shadow-none focus-visible:ring-0 p-0.5"
