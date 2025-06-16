@@ -1,6 +1,8 @@
+import { ScrollArea, ScrollBar } from "@/components/ui/scroll-area";
 import { Separator } from "@/components/ui/separator";
 import { cn } from "@/lib/utils";
 import { Temporal } from "@js-temporal/polyfill";
+import { Calendar } from "lucide-react";
 import { motion } from "motion/react";
 import { Fragment } from "react/jsx-runtime";
 import EventCard from "./components/event-card";
@@ -20,15 +22,21 @@ export default function App() {
         <h2 className="text-xl font-semibold text-foreground self-end select-none">
           Your Events
         </h2>
-        <div className="flex flex-col items-center justify-center border border-dashed border-input rounded-lg p-4 overflow-auto">
+        <ScrollArea className="flex flex-col items-center justify-center border border-dashed border-input rounded-lg p-4">
           {eventsCount === 0 ? (
-            <p className="text-muted-foreground select-none">
-              No events yet. Create your first event!
-            </p>
+            <div className="flex flex-col h-full items-center justify-center text-muted-foreground gap-4">
+              <Calendar className="size-14" strokeWidth={0.9} />
+              <p className="select-none text-xl text-center leading-relaxed">
+                No events yet.
+                <br />
+                Create your first event!
+              </p>
+            </div>
           ) : (
             <Events />
           )}
-        </div>
+          <ScrollBar orientation="horizontal" />
+        </ScrollArea>
       </div>
     </div>
   );
