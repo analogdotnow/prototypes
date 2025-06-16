@@ -24,7 +24,7 @@ export default function App() {
         </h2>
         <ScrollArea className="flex flex-col items-center justify-center border border-dashed border-input rounded-lg p-4">
           {eventsCount === 0 ? (
-            <div className="flex flex-col h-full items-center justify-center text-muted-foreground gap-4">
+            <div className="flex flex-col h-full items-center justify-center text-muted-foreground/60 dark:text-muted-foreground/40 gap-4 pb-6">
               <Calendar className="size-14" strokeWidth={0.9} />
               <p className="select-none text-xl text-center leading-relaxed">
                 No events yet.
