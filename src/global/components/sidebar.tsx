@@ -1,4 +1,5 @@
 import { cn } from "@/lib/utils";
+import { useUpdateEffect } from "@react-hookz/web";
 import { Menu, X } from "lucide-react";
 import { AnimatePresence, motion } from "motion/react";
 import type * as React from "react";
@@ -107,14 +108,17 @@ export const DesktopSidebar = ({
 export const MobileSidebar = ({
   className,
   children,
+  transition,
   ...props
-}: React.ComponentProps<"div">) => {
+}: React.ComponentProps<"div"> & {
+  transition?: React.ComponentProps<typeof motion.div>["transition"];
+}) => {
   const { open, setOpen } = useSidebar();
   return (
     <>
       <div
         className={cn(
-          "h-10 px-4 py-4 flex flex-row md:hidden items-center justify-between bg-neutral-100 dark:bg-neutral-800 w-full",
+          "p-4 flex flex-row md:hidden items-center justify-between bg-neutral-100 dark:bg-neutral-800 w-full",
         )}
         {...props}
       >
@@ -130,14 +134,16 @@ export const MobileSidebar = ({
               initial={{ x: "-100%", opacity: 0 }}
               animate={{ x: 0, opacity: 1 }}
               exit={{ x: "-100%", opacity: 0 }}
-              transition={{
-                duration: 0.3,
-                ease: "easeInOut",
-              }}
               className={cn(
                 "fixed h-full w-full inset-0 bg-white dark:bg-neutral-900 p-10 z-[100] flex flex-col justify-between",
                 className,
               )}
+              transition={
+                transition ?? {
+                  duration: 0.3,
+                  ease: "easeInOut",
+                }
+              }
             >
               <button
                 className="absolute right-10 top-10 z-50 text-neutral-800 dark:text-neutral-200 cursor-pointer"
@@ -164,9 +170,13 @@ export const SidebarLink = ({
   className?: string;
   props?: React.ComponentProps<typeof Link>;
 }) => {
-  const { open, animate } = useSidebar();
+  const { open, animate, setOpen } = useSidebar();
   const location = useLocation();
   const isActive = location.pathname === link.href;
+
+  useUpdateEffect(() => {
+    setOpen(false);
+  }, [location.pathname]);
 
   return (
     <Link

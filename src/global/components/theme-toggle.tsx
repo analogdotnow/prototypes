@@ -36,7 +36,7 @@ export default function ThemeToggle({ className }: { className?: string }) {
     <div className={cn("relative", className)}>
       <Toggle
         variant="outline"
-        className="group data-[state=on]:hover:bg-muted size-9 data-[state=on]:bg-background bg-background"
+        className="group data-[state=on]:hover:bg-muted size-9 data-[state=off]:bg-transparent md:data-[state=off]:bg-background md:data-[state=off]:hover:bg-background/20 data-[state=on]:bg-background bg-background"
         pressed={theme === "light"}
         onPressedChange={handleThemeChange}
         aria-label={`Switch to ${theme === "dark" ? "light" : "dark"} mode`}

@@ -17,8 +17,8 @@ import { prototypes } from "./prototypes";
 
 export function AppLayout() {
   return (
-    <main className="flex flex-col md:flex-row bg-gray-100 dark:bg-neutral-800 w-full overflow-hidden min-h-screen">
-      <div className="absolute top-4 left-7 z-30 flex gap-2">
+    <main className="flex flex-col md:flex-row bg-gray-100 dark:bg-neutral-800 w-full overflow-hidden min-h-svh h-svh md:h-auto">
+      <div className="absolute bottom-2.5 left-4 md:bottom-auto md:top-4 md:left-7 z-30 flex gap-2">
         <ThemeToggle />
         <PrototypeSettings />
       </div>
@@ -67,14 +67,14 @@ export const Dashboard = () => {
   useFeedback();
 
   return (
-    <div className="flex flex-1">
-      <div className="p-2 md:px-7 md:py-4 rounded-r-2xl border-r border-neutral-200 dark:border-neutral-700 bg-white dark:bg-neutral-900 flex-1 size-full">
+    <div className="flex-1 min-h-0 md:min-h-auto">
+      <div className="p-4 md:px-7 border-b rounded-b-2xl md:border-r md:rounded-bl-none md:rounded-tr-2xl md:border-b-0 border-neutral-200 dark:border-neutral-700 bg-white dark:bg-neutral-900 size-full overflow-auto md:overflow-clip scrollbar-hidden">
         <div className="container mx-auto flex flex-col gap-y-10 h-full items-center">
           <div className="flex flex-col gap-2 text-center">
-            <h1 className="text-3xl font-medium font-display text-foreground">
+            <h1 className="md:text-3xl text-2xl font-medium font-display text-foreground">
               {prototype.name}
             </h1>
-            <p className="text-sm text-muted-foreground max-w-80 text-pretty leading-tight">
+            <p className="text-sm text-muted-foreground md:max-w-80 max-w-72 text-pretty leading-tight">
               {prototype.description}
             </p>
           </div>

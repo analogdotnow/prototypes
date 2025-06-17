@@ -16,7 +16,12 @@ export default function PrototypeSettings() {
   return (
     <Popover>
       <PopoverTrigger asChild>
-        <Button variant="outline" size="icon" aria-label="Settings">
+        <Button
+          variant="outline"
+          size="icon"
+          aria-label="Settings"
+          className="dark:bg-transparent md:dark:bg-background md:dark:hover:bg-background/20"
+        >
           <Cog className="size-4" aria-hidden="true" />
         </Button>
       </PopoverTrigger>
