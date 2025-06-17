@@ -16,6 +16,7 @@ export const prototypes: PrototypeEntry[] = [
     description:
       "Global settings for the app. Includes view preferences, account management and etc.",
     component: lazy(() => import("./settings-dialog/main")),
+    mobileDisabled: true,
   },
   {
     id: "example",
