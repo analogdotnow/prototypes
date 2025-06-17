@@ -5,7 +5,7 @@ import { ShaderIcon } from "./icon";
 
 export default function App() {
   return (
-    <div className="flex flex-col flex-1 justify-center items-center w-full gap-y-20 md:gap-y-36">
+    <div className="flex flex-col flex-1 justify-center items-center w-full gap-y-20 md:gap-y-28">
       <ShaderIcon className="animate-rotateY-pulse scale-90 md:scale-100" />
       <div className="flex flex-col md:gap-y-20 gap-y-10 items-center w-full">
         <TextLoop className="font-mono md:text-xl text-lg w-3/5 h-20 md:h-auto text-center md:w-full whitespace-normal md:whitespace-nowrap">
