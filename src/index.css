@@ -138,8 +138,21 @@
   }
 }
 
-@utility scrollbar-hidden {
-  &::-webkit-scrollbar {
-    display: none;
+.scrollbar-hidden::-webkit-scrollbar {
+  display: none;
+}
+
+@supports not (field-sizing: content) {
+  textarea.field-sizing-content {
+    min-height: 1.5rem;
+    resize: none;
+    transition: height 0.1s ease-out;
+  }
+}
+
+/* Safari-specific optimizations */
+@supports (-webkit-appearance: none) and (not (field-sizing: content)) {
+  textarea.field-sizing-content {
+    transition: height 0.08s ease-out;
   }
 }
