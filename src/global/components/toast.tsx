@@ -47,7 +47,7 @@ function Toast(props: ToastProps) {
   return (
     <div
       className={cn(
-        "flex flex-col md:flex-row items-end rounded-xl bg-popover shadow-lg border border-border w-full px-4 py-3.5 gap-y-3 md:gap-y-0",
+        "flex flex-col md:flex-row items-end rounded-xl bg-popover shadow-lg border border-border w-fit md:w-full px-4 py-3.5 gap-y-3 md:gap-y-0",
         {
           "md:pl-5": button !== undefined,
           "md:w-lg md:-translate-x-24": variant === "discord",
