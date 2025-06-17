@@ -27,7 +27,7 @@ export default function App() {
           {eventsCount === 0 ? (
             <div className="flex flex-col h-full items-center justify-center text-muted-foreground/60 gap-2 md:gap-4 pb-6 md:pt-0 pt-4">
               <Calendar className="md:size-14 size-8" strokeWidth={0.9} />
-              <p className="select-none text-sm md:text-xl text-center leading-tight md:leading-relaxed">
+              <p className="select-none text-sm md:text-xl text-center leading-tight md:leading-snug">
                 No events yet.
                 <br />
                 Create your first event!
