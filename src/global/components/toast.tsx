@@ -47,10 +47,10 @@ function Toast(props: ToastProps) {
   return (
     <div
       className={cn(
-        "flex rounded-xl bg-popover shadow-lg border border-border w-full items-center px-4 py-3.5",
+        "flex flex-col md:flex-row items-end rounded-xl bg-popover shadow-lg border border-border w-full px-4 py-3.5 gap-y-3 md:gap-y-0",
         {
-          "pl-5": button !== undefined,
-          "w-lg -translate-x-24": variant === "discord",
+          "md:pl-5": button !== undefined,
+          "md:w-lg md:-translate-x-24": variant === "discord",
         },
       )}
     >
@@ -66,10 +66,10 @@ function Toast(props: ToastProps) {
         </div>
       </div>
       {button && (
-        <div className="ml-2 shrink-0">
+        <div className="md:ml-2 shrink-0 w-1/2 md:w-auto">
           <Button
             className={cn(
-              "rounded-full px-3 pb-1 pt-0.5 h-8 text-sm font-semibold",
+              "rounded-full px-3 pb-1 pt-0.5 h-8 text-sm font-semibold w-full md:w-auto",
               {
                 "bg-linear-to-b from-[#5865F2] to-indigo-400 dark:from-indigo-300 dark:to-indigo-400 min-w-20 hover:brightness-90":
                   variant === "discord",
