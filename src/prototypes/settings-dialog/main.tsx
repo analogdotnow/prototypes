@@ -27,7 +27,7 @@ const tabs = {
 export default function App() {
   return (
     <section className="flex-1 w-full flex flex-col items-center justify-center">
-      <div className="border border-border rounded-2xl py-4 px-5 bg-accent relative">
+      <div className="border border-border rounded-2xl py-4 px-5 bg-popover dark:bg-accent shadow-sm shadow-analog-neutral dark:shadow-none relative">
         <Tabs
           defaultValue="accounts"
           orientation="vertical"
@@ -38,7 +38,7 @@ export default function App() {
               <TabsTrigger
                 key={key}
                 value={key}
-                className="data-[state=active]:bg-primary-foreground/50 w-full justify-start data-[state=active]:shadow-none"
+                className="data-[state=active]:bg-muted dark:data-[state=active]:bg-primary-foreground/50 w-full justify-start data-[state=active]:shadow-none"
               >
                 <value.icon className="size-4 mr-4" /> {value.title}
               </TabsTrigger>
@@ -59,7 +59,7 @@ export default function App() {
         <Button
           variant="outline"
           size="icon"
-          className="absolute top-2 right-3 size-7 bg-primary-foreground/40 hover:bg-primary-foreground/80 border-none shadow-none"
+          className="absolute top-2 right-3 size-7 bg-border/40 hover:bg-border/80 dark:bg-primary-foreground/40 dark:hover:bg-primary-foreground/80 border-none shadow-none"
         >
           <X className="size-4" />
         </Button>

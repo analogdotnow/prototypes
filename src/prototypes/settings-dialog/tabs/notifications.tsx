@@ -11,7 +11,7 @@ export default function Notifications() {
       </div>
       <div className="flex flex-col items-center gap-4 w-full flex-1 justify-center text-muted-foreground">
         <AnalogIcon
-          className="size-14 stroke-muted-foreground text-transparent"
+          className="size-14 stroke-muted-foreground text-transparent overflow-visible"
           strokeWidth={6}
           fill="none"
         />

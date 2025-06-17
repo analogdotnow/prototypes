@@ -49,7 +49,7 @@ export default function General() {
         <ToggleGroup
           type="single"
           variant="outline"
-          className="gap-x-4"
+          className="gap-x-4 data-[variant=outline]:shadow-none"
           value={value}
           onValueChange={(value: string) => {
             if (value) setValue(value);
@@ -57,12 +57,12 @@ export default function General() {
         >
           {Object.entries(themes).map(([key, value]) => (
             <ToggleGroupItem
-              className="flex-1 h-fit border-none group/theme px-0"
+              className="flex-1 h-fit border-none group/theme px-0 hover:bg-transparent data-[state=on]:bg-transparent"
               value={key}
               key={key}
             >
               <div className="relative w-full">
-                <value.icon className="size-auto rounded-md ring-offset-muted group-aria-checked/theme:ring-offset-4 group-aria-checked/theme:ring-2 group-aria-checked/theme:ring-ring" />
+                <value.icon className="size-auto rounded-md ring-offset-popover group-aria-checked/theme:ring-offset-4 group-aria-checked/theme:ring-2 group-aria-checked/theme:ring-ring/40 dark:group-aria-checked/theme:ring-ring" />
                 <p className="mt-3 text-sm font-light text-muted-foreground group-aria-checked/theme:text-foreground">
                   {value.name}
                 </p>

@@ -217,7 +217,7 @@ function AccountRow({
           variant="ghost"
           size="sm"
           onClick={onDisconnect}
-          className="text-destructive hover:text-destructive hover:bg-destructive/10"
+          className="text-destructive hover:text-destructive hover:bg-destructive/10 h-6"
         >
           Disconnect
         </Button>
