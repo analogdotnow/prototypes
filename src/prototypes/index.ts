@@ -11,6 +11,13 @@ export const prototypes: PrototypeEntry[] = [
     settings: lazy(() => import("./event-creation-card/settings")),
   },
   {
+    id: "settings-dialog",
+    name: "Settings dialog",
+    description:
+      "Global settings for the app. Includes view preferences, account management and etc.",
+    component: lazy(() => import("./settings-dialog/main")),
+  },
+  {
     id: "example",
     name: "New example",
     description: "This is an example prototype.",
