@@ -91,20 +91,20 @@ const DateGroup = withForm({
             opacity: repeats ? 1 : 0,
             height: repeats ? "fit-content" : 0,
           }}
-          transition={{ duration: 0.2, ease: "easeInOut" }}
+          transition={{ duration: 0.2, ease: "linear" }}
           className="overflow-hidden pl-0.5"
         >
-          <form.Field name="repeatType">
-            {(repeatTypeField) => (
-              <div className="pt-2">
+          <div className="pt-2">
+            <form.Field name="repeatType">
+              {(repeatTypeField) => (
                 <RepeatTypeSelect
                   rangeDuration={duration}
                   value={repeatTypeField.state.value}
                   onChange={repeatTypeField.handleChange}
                 />
-              </div>
-            )}
-          </form.Field>
+              )}
+            </form.Field>
+          </div>
         </motion.div>
       </div>
     );

@@ -75,7 +75,7 @@ const TimeGroup = withForm({
                   />
                   <StyledTimeField
                     label="Start Time"
-                    className="flex-1 pr-7"
+                    className="flex-1 md:pr-7 pr-9"
                     inputClassName="justify-end"
                     value={safeParseTime(startField.state.value)}
                     onChange={(value) =>
@@ -87,7 +87,7 @@ const TimeGroup = withForm({
                 <ArrowRight className="size-4 text-muted-foreground/80 self-center" />
                 <StyledTimeField
                   label="End Time"
-                  className="flex-1 pl-7"
+                  className="flex-1 md:pl-7 pl-9"
                   value={safeParseTime(endField.state.value)}
                   onChange={(value) =>
                     value && endField.handleChange(value.toString())
@@ -157,7 +157,7 @@ function StyledTimeField({
   inputClassName?: string;
 } & TimeFieldProps<Time>) {
   return (
-    <TimeField {...props}>
+    <TimeField hourCycle={24} {...props}>
       <AriaLabel className="sr-only" htmlFor={props.name}>
         {label}
       </AriaLabel>
