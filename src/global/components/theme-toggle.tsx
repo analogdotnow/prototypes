@@ -26,9 +26,13 @@ export default function ThemeToggle({ className }: { className?: string }) {
   }, [setSavedTheme]);
 
   useMountEffect(() => {
-    if (userPrefersDark && savedTheme !== "light") {
-      setTheme("dark");
-      document.documentElement.classList.add("dark");
+    if (savedTheme) {
+      setTheme(savedTheme);
+      document.documentElement.classList.toggle("dark", savedTheme === "dark");
+    } else {
+      const systemTheme = userPrefersDark ? "dark" : "light";
+      setTheme(systemTheme);
+      document.documentElement.classList.toggle("dark", systemTheme === "dark");
     }
   });
 
