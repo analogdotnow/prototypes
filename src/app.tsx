@@ -10,6 +10,7 @@ import {
 import ThemeToggle from "@/components/theme-toggle";
 import { useFeedback } from "@/hooks/use-feedback";
 import type { PrototypeEntry } from "@/types";
+import { useMediaQuery } from "@react-hookz/web";
 import { motion } from "motion/react";
 import { Outlet, useParams } from "react-router";
 import { Toaster } from "sonner";
@@ -57,12 +58,16 @@ export function AppLayout() {
 }
 
 export const Dashboard = () => {
+  const isMobile = useMediaQuery("only screen and (max-width : 768px)");
   const { prototypeId } = useParams<{ prototypeId: string }>();
 
   const prototype = prototypes.find(
     (p) => p.id === prototypeId,
   ) as PrototypeEntry;
-  const Prototype = prototype.component;
+  const Prototype =
+    isMobile && prototype.mobileDisabled
+      ? MobileDisabledFallback
+      : prototype.component;
 
   useFeedback();
 
@@ -91,7 +96,21 @@ export const Dashboard = () => {
   );
 };
 
-export const Logo = () => {
+function MobileDisabledFallback() {
+  return (
+    <div className="flex flex-col items-center size-full justify-center">
+      <span className="text-6xl mb-6">🫠</span>
+      <h1 className="text-2xl font-medium font-display text-foreground mb-2">
+        Mobile not supported
+      </h1>
+      <p className="w-4/5 text-center text-pretty">
+        Damn, this looks okay only on desktop. So sorry.
+      </p>
+    </div>
+  );
+}
+
+function Logo() {
   const { open } = useSidebar();
   return (
     <div className="flex space-x-2.5 items-center py-1 relative z-20 text-foreground select-none">
@@ -101,4 +120,4 @@ export const Logo = () => {
       </motion.span>
     </div>
   );
-};
+}

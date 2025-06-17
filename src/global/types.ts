@@ -8,4 +8,5 @@ export type PrototypeEntry = {
   settings?: React.LazyExoticComponent<
     React.ComponentType<Record<string, never>>
   >;
+  mobileDisabled?: boolean;
 };
