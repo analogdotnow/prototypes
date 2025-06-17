@@ -16,10 +16,10 @@ export default function App() {
 
   return (
     <div className="flex flex-col items-center md:items-stretch md:flex-row gap-6 md:gap-14 size-full">
-      <div className="w-xs shrink-0">
+      <div className="w-full max-w-[22rem] md:max-w-xs shrink-0">
         <EventForm />
       </div>
-      <div className="grid grid-cols-1 grid-rows-[2rem_1fr] gap-3 px-3 md:px-0 md:pb-5 md:flex-1 w-full md:w-auto">
+      <div className="grid grid-cols-1 grid-rows-[2rem_1fr] gap-3 max-w-sm md:max-w-none pb-5 md:flex-1 w-full md:w-auto">
         <h2 className="md:text-xl text-lg font-semibold text-foreground self-end select-none">
           Your Events
         </h2>

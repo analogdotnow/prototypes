@@ -18,7 +18,7 @@ import { prototypes } from "./prototypes";
 export function AppLayout() {
   return (
     <main className="flex flex-col md:flex-row bg-gray-100 dark:bg-neutral-800 w-full overflow-hidden min-h-svh h-svh md:h-auto">
-      <div className="absolute bottom-2.5 left-4 md:bottom-auto md:top-4 md:left-7 z-30 flex gap-2">
+      <div className="absolute bottom-3.5 left-6 md:bottom-auto md:top-4 md:left-7 z-30 flex gap-2">
         <ThemeToggle />
         <PrototypeSettings />
       </div>
