@@ -74,8 +74,8 @@ export const Dashboard = () => {
   return (
     <div className="flex-1 min-h-0 md:min-h-auto">
       <div className="border-b rounded-b-2xl md:border-r md:rounded-bl-none md:rounded-tr-2xl md:border-b-0 border-neutral-200 dark:border-neutral-700 bg-white dark:bg-neutral-900 size-full overflow-clip">
-        <div className="container mx-auto flex flex-col gap-y-10 h-full items-center overflow-auto md:overflow-clip scrollbar-hidden p-4 md:px-7">
-          <div className="flex flex-col gap-2 text-center">
+        <div className="container mx-auto flex flex-col h-full items-center overflow-auto md:overflow-clip scrollbar-hidden p-4 md:px-7">
+          <div className="flex flex-col gap-2 text-center pb-3">
             <h1 className="md:text-3xl text-2xl font-medium font-display text-foreground">
               {prototype.name}
             </h1>

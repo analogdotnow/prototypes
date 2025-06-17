@@ -15,7 +15,7 @@ export default function App() {
   const { eventsCount } = useEvents();
 
   return (
-    <div className="flex flex-col items-center md:items-stretch md:flex-row gap-6 md:gap-14 size-full">
+    <div className="flex flex-col items-center md:items-stretch md:flex-row gap-6 md:gap-14 size-full pt-7">
       <div className="w-full max-w-[22rem] md:max-w-xs shrink-0">
         <EventForm />
       </div>
