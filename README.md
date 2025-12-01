@@ -56,7 +56,7 @@ src/
 - **[animate-ui.com](https://animate-ui.com/docs)** - More animations
 - **[21st.dev](https://21st.dev/home)** - Collection of shadcn-compatible resources
 
-## Available Tech
+## Tech stack
 
 React Router v7 • Jotai • Tailwind • Motion • Vercel AI SDK • Zod • Tanstack Form
 
